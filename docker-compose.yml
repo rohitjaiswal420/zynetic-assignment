@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    container_name: ev_postgres
+    environment:
+      POSTGRES_USER: evuser
+      POSTGRES_PASSWORD: evpass
+      POSTGRES_DB: evdb
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
